@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/nitotm/efficient-language-detector-js/issues"
   },
-  "homepage": "https://github.com/nitotm/efficient-language-detector-js#readme"
+  "homepage": "https://github.com/nitotm/efficient-language-detector-js#readme",
+  "devDependencies": {
+    "@biomejs/biome": "1.8.1"
+  }
 }
