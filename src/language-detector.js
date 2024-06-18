@@ -110,31 +110,30 @@ function textProcessor(text) {
  * @returns {Object}
  */
 function getByteNgrams(words) {
-	const byteNgrams = {};
 	let countNgrams = 0;
-	let thisBytes;
-	let j;
-
-	for (const key in words) {
-		const word = words[key];
+	const byteNgrams = {};
+	for (const word of words) {
 		let len = word.length;
 		if (len > 70) {
 			len = 70;
 		}
 
+		let j;
 		for (j = 0; j + 4 < len; j += 3, ++countNgrams) {
-			thisBytes = (j === 0 ? " " : "") + word.substring(j, j + 4);
+			const thisBytes = (j === 0 ? " " : "") + word.substring(j, j + 4);
 			byteNgrams[thisBytes] = typeof byteNgrams[thisBytes] !== "undefined" ? byteNgrams[thisBytes] + 1 : 1;
 		}
-		thisBytes = (j === 0 ? " " : "") + word.substring(len !== 3 ? len - 4 : 0) + " ";
+		const thisBytes = (j === 0 ? " " : "") + word.substring(len !== 3 ? len - 4 : 0) + " ";
 		byteNgrams[thisBytes] = typeof byteNgrams[thisBytes] !== "undefined" ? byteNgrams[thisBytes] + 1 : 1;
 		countNgrams++;
 	}
+
 	// Frequency is multiplied by 15000 at the ngrams database. A reduced number (13200) seems to work better.
 	// Linear formulas were tried, decreasing the multiplier for fewer ngram strings, no meaningful improvement.
 	for (const bytes in byteNgrams) {
 		byteNgrams[bytes] = (byteNgrams[bytes] / countNgrams) * 13200;
 	}
+
 	return byteNgrams;
 }
 
@@ -146,15 +145,15 @@ function getByteNgrams(words) {
  * @returns {Array}
  */
 function calculateScores(byteNgrams, numNgrams) {
-	let bytes, globalFrequency, relevancy, langCount, frequency, lang, thisByte;
 	const langScore = [...languageData.langScore];
 
-	for (bytes in byteNgrams) {
-		frequency = byteNgrams[bytes];
-		thisByte = languageData.ngrams[bytes];
+	for (const bytes in byteNgrams) {
+		const frequency = byteNgrams[bytes];
+		const thisByte = languageData.ngrams[bytes];
 
 		if (thisByte) {
-			langCount = Object.keys(thisByte).length;
+			const langCount = Object.keys(thisByte).length;
+			let relevancy;
 			// Ngram score multiplier, the fewer languages found the more relevancy. Formula can be fine-tuned.
 			if (langCount === 1) {
 				relevancy = 27; // Handpicked relevance multiplier, trial-error
@@ -164,8 +163,8 @@ function calculateScores(byteNgrams, numNgrams) {
 				relevancy = 1;
 			}
 			// Most time-consuming loop, do only the strictly necessary inside
-			for (lang in thisByte) {
-				globalFrequency = thisByte[lang];
+			for (const lang in thisByte) {
+				const globalFrequency = thisByte[lang];
 				langScore[lang] +=
 					(frequency > globalFrequency ? globalFrequency / frequency : frequency / globalFrequency) *
 						relevancy +
@@ -177,10 +176,10 @@ function calculateScores(byteNgrams, numNgrams) {
 	// This divisor will produce a final score between 0 - ~1, score could be >1. Can be improved.
 	const resultDivisor = numNgrams * 3.2;
 	const results = [];
-	for (lang in langScore) {
+	for (const lang of Array(langScore).keys()) {
 		if (langScore[lang]) {
 			// Javascript does Not guarantee object order, so a multi-array is used
-			results.push([Number.parseInt(lang), langScore[lang] / resultDivisor]); // * languageData.scoreNormalizer[lang];
+			results.push([lang, langScore[lang] / resultDivisor]); // * languageData.scoreNormalizer[lang];
 		}
 	}
 	return results;
@@ -258,9 +257,9 @@ function strToUtf8Bytes(str) {
  */
 function filterLangSubset(results) {
 	const subResults = [];
-	for (const key in results) {
-		if (subset.indexOf(results[key][0]) > -1) {
-			subResults.push(results[key]);
+	for (const result of results) {
+		if (subset.includes(result[0])) {
+			subResults.push(result);
 		}
 	}
 	return subResults;
@@ -270,16 +269,16 @@ function filterLangSubset(results) {
  * Validates an expected array of ISO 639-1 language code strings, given by the user, and creates a subset of the valid
  * languages compared against the current database available languages
  *
- * @param {Array|boolean} languages
+ * @param {Array} languages
  * @returns {Array|boolean}
  */
 function makeSubset(languages) {
 	if (languages) {
 		subset = [];
-		for (const key in languages) {
+		for (const language of languages) {
 			// Validate languages, by checking if they are available at languageData
 			const lang = Object.keys(languageData.langCodes).find(
-				(lkey) => languageData.langCodes[lkey] === languages[key],
+				(lkey) => languageData.langCodes[lkey] === language,
 			);
 			if (lang) {
 				subset.push(Number.parseInt(lang));

@@ -31,13 +31,12 @@ export class LanguageResult {
 	 */
 	getScores() {
 		const scores = {};
-		let key;
-		for (key in this.results) {
-			const score = this.results[key][1];
+		for (const result of this.results) {
+			const score = result[1];
 			if (score === 0) {
 				break;
 			}
-			scores[this.langCodes[this.results[key][0]]] = score;
+			scores[this.langCodes[result[0]]] = score;
 		}
 		return scores;
 	}
