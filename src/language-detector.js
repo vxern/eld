@@ -39,7 +39,9 @@ let doCleanText = false;
  * @returns {{language: string, getScores(): Object, isReliable(): boolean}} class LanguageResult
  */
 function detect(text) {
-	if (typeof text !== "string") return new LanguageResult("", 0, 0, {});
+	if (typeof text !== "string") {
+      return new LanguageResult("", 0, 0, {});
+    }
 
 	if (doCleanText) {
 		// Removes Urls, emails, alphanumerical & numbers

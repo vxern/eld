@@ -6,6 +6,6 @@ const unicodeRegex = {
 };
 
 // separators matches all languages word separators and special characters
-export const separators = new RegExp("[^" + unicodeRegex.L.bmp + "]+(?<![\\x27\\x60\\u2019])", "gu");
+export const separators = new RegExp(`[^${unicodeRegex.L.bmp}]+(?<![\\x27\\x60\\u2019])`, "gu");
 
-export const matchDomains = new RegExp("([A-Za-z0-9-]+.)+com(/S*|[^" + unicodeRegex.L.bmp + "])", "g");
+export const matchDomains = new RegExp(`([A-Za-z0-9-]+.)+com(/S*|[^${unicodeRegex.L.bmp}])`, "g");

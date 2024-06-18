@@ -19,41 +19,38 @@ export class LanguageResult {
 	 */
 	constructor(language, results, numNgrams, langCodes) {
 		this.language = language;
-		this.getScores = () => getScores(results, langCodes); // returns object
-		this.isReliable = () => isReliable(results, numNgrams, language); // returns boolean
+		this.results = results;
+		this.numNgrams = numNgrams;
+		this.langCodes = langCodes;
 	}
-}
 
-/**
- * @param {object} results
- * @param {number} numNgrams
- * @param {string} language
- * @returns {boolean}
- */
-function isReliable(results, numNgrams, language) {
-	if (!results.length || numNgrams < 3) {
-		return false;
-	}
-	const nextScore = results.length > 1 ? results[1][0] : 0;
-	// A minimum of a 24% per ngram score from average
-	return !(avgScore[language] * 0.24 > results[0][1] / numNgrams || Math.abs(results[0][1] - nextScore) < 0.01);
-}
-
-/**
- * Converts internal multi-array results, with integer language codes, to final object with ISO 639-1 codes
- * @param {Object} results
- * @param {Object} langCodes
- * @returns {Object}
- */
-function getScores(results, langCodes) {
-	const scores = {};
-	let key;
-	for (key in results) {
-		const score = results[key][1];
-		if (score === 0) {
-			break;
+	/**
+	 * Converts internal multi-array results, with integer language codes, to final object with ISO 639-1 codes
+	 *
+	 * @returns {Object}
+	 */
+	getScores() {
+		const scores = {};
+		let key;
+		for (key in this.results) {
+			const score = this.results[key][1];
+			if (score === 0) {
+				break;
+			}
+			scores[this.langCodes[this.results[key][0]]] = score;
 		}
-		scores[langCodes[results[key][0]]] = score;
+		return scores;
 	}
-	return scores;
+
+	/**
+	 * @returns {boolean}
+	 */
+	isReliable() {
+		if (this.results.length === 0 || this.numNgrams < 3) {
+			return false;
+		}
+		const nextScore = this.results.length > 1 ? this.results[1][0] : 0;
+		// A minimum of a 24% per ngram score from average
+		return !(avgScore[this.language] * 0.24 > this.results[0][1] / this.numNgrams || Math.abs(this.results[0][1] - nextScore) < 0.01);
+	}
 }
