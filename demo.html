@@ -13,7 +13,7 @@
     </main>
     <!-- <script src="minified/eld.M60.min.js" charset="utf-8"></script> -->
     <script type="module">
-	  import { eld } from './src/languageDetector.js'
+	  import { eld } from './src/language-detector.js'
 
 	  // detect() expects a UTF-8 string, returns an object, with a 'language' variable : ISO 639-1 code or empty string
 	  console.log( eld.detect('Hola, cómo te llamas?') )
@@ -53,7 +53,7 @@
       await eld.loadNgrams('ngramsL60.js') // Will not remove any active dynamic subset
       // eld.loadNgrams('ngramsL60.js').then((loaded) => { if (loaded) { /* code */ } })
 
-      // To change the preloaded database on import, edit the file at scr/languageDetector.js: loadNgrams('ngramsM60.js')
+      // To change the preloaded database on import, edit the file at scr/language-detector.js: loadNgrams('ngramsM60.js')
       // if you believe eld should change this database preload behavior, comment at gitHub /discussions
 
       // Finally, we can get the current status of eld: languages, database type and subset

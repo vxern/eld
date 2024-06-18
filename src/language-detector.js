@@ -5,12 +5,12 @@ Author Nito T.M. (https://github.com/nitotm)
 Package npmjs.com/package/eld
 */
 
-import { LanguageResult } from "./LanguageResult.js";
+import { LanguageResult } from "./language-result.js";
 import { dictionary } from "./dictionary.js";
-import { isoLanguages } from "./isoLanguages.js";
-import { languageData, loadNgrams } from "./languageData.js";
-import { matchDomains, separators } from "./regexPatterns.js";
-import { saveLanguageSubset } from "./saveLanguageSubset.dev.js";
+import { isoLanguages } from "./iso-languages.js";
+import { languageData, loadNgrams } from "./language-data.js";
+import { matchDomains, separators } from "./regex-patterns.js";
+import { saveLanguageSubset } from "./save-language-subset.dev.js";
 
 await loadNgrams("ngramsM60.js");
 

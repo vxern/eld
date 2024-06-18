@@ -5,7 +5,7 @@ Author Nito T.M. (https://github.com/nitotm)
 Package npmjs.com/package/eld
 */
 
-import { isoLanguages } from "./isoLanguages.js";
+import { isoLanguages } from "./iso-languages.js";
 
 export const saveLanguageSubset = (() => {
 	/**

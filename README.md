@@ -45,7 +45,7 @@ import { eld } from 'eld' // use .mjs extension for version <18
 ```html
 
 <script type="module" charset="utf-8">
-    import { eld } from './src/languageDetector.js' // Update path.
+    import {eld} from './language-detector.js' // Update path.
     /* code */
 </script>
 ```
@@ -80,7 +80,7 @@ eld.dynamicLangSubset(false)
 eld.saveSubset(langSubset) // ONLY for the Web Browser, and not included at minified files
 // We can load any Ngrams database saved at src/ngrams/, including subsets. Returns true if success
 await eld.loadNgrams('ngramsL60.js') // eld.loadNgrams('file').then((loaded) => { if (loaded) { } })
-// To modify the preloaded database, edit the filename loadNgrams('filename') at languageDetector.js
+// To modify the preloaded database, edit the filename loadNgrams('filename') at language-detector.js
 ```
 - Also, we can get the current status of eld: languages, database type and subset
 ```javascript

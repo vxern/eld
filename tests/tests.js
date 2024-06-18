@@ -1,5 +1,5 @@
-import { eld } from "../src/languageDetector.js";
-import runTests from "./testRunner.js";
+import { eld } from "../src/language-detector.js";
+import runTests from "./test-runner.js";
 
 const txtFile =
 	(typeof window !== "undefined" ? ".." : "https://github.com/nitotm/efficient-language-detector-js/raw/main") +

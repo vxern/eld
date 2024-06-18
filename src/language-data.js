@@ -5,7 +5,7 @@ Author Nito T.M. (https://github.com/nitotm)
 Package npmjs.com/package/eld
 */
 
-import { avgScore } from "./avgScore.js";
+import { avgScore } from "./avg-score.js";
 // import { ngramsData } from "./ngrams/ngramsM60.js"
 
 export const languageData = {
