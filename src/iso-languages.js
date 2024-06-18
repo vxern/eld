@@ -6,7 +6,7 @@ Package npmjs.com/package/eld
 */
 
 /**
- * Converts ngram database language indexes (integer) to ISO 639-1 code
+ * Converts ngram database language indexes (integer) to ISO 639-1 code.
  *
  * @param {Array} languageSet
  * @param {Object} defaultLanguages
@@ -14,8 +14,10 @@ Package npmjs.com/package/eld
  */
 export function isoLanguages(languageSet, defaultLanguages) {
 	const languageCodes = {};
+
 	for (const langID of languageSet) {
 		languageCodes[langID] = defaultLanguages[langID];
 	}
+
 	return languageCodes;
 }

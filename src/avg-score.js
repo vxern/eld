@@ -1,4 +1,6 @@
-// Average score of each language in a correct detection, done with an extended version of big-test benchmark.
+/**
+ * Average score of each language in a correct detection, done with an extended version of big-test benchmark.
+ */
 export const avgScore = {
 	am: 0.0661,
 	ar: 0.0237,
@@ -61,10 +63,3 @@ export const avgScore = {
 	yo: 0.0329,
 	zh: 0.0152,
 };
-
-/* Deprecated for now: Some languages score higher with the same amount of text, this multiplier evens it out for
- *  multi-language strings
- * scoreNormalizer = [0.7, 1, 1, 1, 1, 0.6, 0.98, 1, 1, 1, 0.9, 1, 1, 1, 1, 1, 1, 1, 0.6, 1, 0.7, 1, 1, 0.9, 1, 1, 0.8,
- * 0.6, 0.6, 1, 1, 0.5, 1, 1, 0.6, 0.7, 1, 0.95, 1, 0.6, 0.6, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 0.6, 0.6, 0.7, 0.9, 1, 1, 1,
- * 0.8, 1, 1.7]
- */

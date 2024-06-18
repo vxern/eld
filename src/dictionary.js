@@ -5,8 +5,14 @@ Author Nito T.M. (https://github.com/nitotm)
 Package npmjs.com/package/eld
 */
 
-// JS does not allow raw byte strings, Uint8Array\hex adds complexity and a heavier database.
-// A dictionary for invalid UTF-8 bytes solves all problems.
+/**
+ * A dictionary for invalid UTF-8 bytes solves all problems.
+ *
+ * @privateRemarks
+ * JS does not allow raw byte strings, Uint8Array/hex adds complexity and a heavier database.
+ *
+ * @type {string[]}
+ */
 export const dictionary = [
 	" ",
 	" ",
