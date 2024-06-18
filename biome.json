@@ -12,7 +12,8 @@
 				"all": true,
 				"noDefaultExport": "off",
 				"useNamingConvention": "off",
-				"noNonNullAssertion": "off"
+				"noNonNullAssertion": "off",
+				"noParameterAssign": "off"
 			},
 			"suspicious": {
 				"all": true,
