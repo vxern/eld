@@ -2,8 +2,7 @@ import { eld } from "../src/language-detector.js";
 import runTests from "./test-runner.js";
 
 const txtFile =
-	(typeof window !== "undefined" ? ".." : "https://github.com/nitotm/efficient-language-detector-js/raw/main") +
-	"/benchmarks/big-test.txt"; // Node or Web
+	(typeof window !== "undefined" ? ".." : "https://github.com/vxern/eld/raw/main") + "/benchmarks/big-test.txt"; // Node or Web
 const bigTest = await fetch(txtFile).then((response) => response.text());
 
 // Mostly functional testing, when functions are more mature I will add some more unit tests

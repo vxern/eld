@@ -6,7 +6,7 @@
 	"type": "module",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nitotm/efficient-language-detector-js.git"
+		"url": "git+https://github.com/vxern/eld.git"
 	},
 	"keywords": [
 		"nlp",
@@ -24,9 +24,9 @@
 	"funding": "https://linktr.ee/nitotm",
 	"license": "Apache-2.0",
 	"bugs": {
-		"url": "https://github.com/nitotm/efficient-language-detector-js/issues"
+		"url": "https://github.com/vxern/eld/issues"
 	},
-	"homepage": "https://github.com/nitotm/efficient-language-detector-js#readme",
+	"homepage": "https://github.com/vxern/eld#readme",
 	"devDependencies": {
 		"@biomejs/biome": "1.8.1"
 	}
