@@ -1,5 +1,5 @@
 {
-	"name": "eld",
+	"name": "@vxern/eld",
 	"version": "1.1.0",
 	"description": "Fast and accurate natural language detection. Detector written in Javascript. Efficient language detector, Nito-ELD, ELD.",
 	"main": "src/language-detector.js",
